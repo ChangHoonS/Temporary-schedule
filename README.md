@@ -11,3 +11,7 @@
 | 일정 삭제 | DELETE | /schedules/{id} | ? | X | X | 200: OK |
 
 초기 API 명세 임시 설정
+
+ERD URL : https://www.erdcloud.com/d/ux29fWhQDASoxBRJd
+
+ERD 링크 임시 첨부
