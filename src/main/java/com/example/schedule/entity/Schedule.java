@@ -1,7 +1,9 @@
 package com.example.schedule.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 @Table(name = "schedule")
 public class Schedule extends BaseEntity {
@@ -19,4 +21,14 @@ public class Schedule extends BaseEntity {
     @Column(columnDefinition = "Longtext") // 생성 시 데이터베이스 컬럼 정보를 직접 설정 가능 - VARCHAR()를 넘어서는 큰 용량의 문자열 저장 가능
     private String task;
 
+    // Entity 는 무조건 기본 생성자가 필수
+    public Schedule() {
+    }
+
+    //연관 생성자 만들기
+    public Schedule(String username, String title, String task) {
+        this.username = username;
+        this.title = title;
+        this.task = task;
+    }
 }
