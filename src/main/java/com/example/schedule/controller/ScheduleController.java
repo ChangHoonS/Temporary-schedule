@@ -6,10 +6,9 @@ import com.example.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController //Controller 와 ResponseBody 가 합쳐진 Annotation 이며 주로 JSON형태의 객체 데이터를 반환
 @RequestMapping("/schedules") // 등록한 메서드들을 가지고 있다가 요청이 들어오면 Mapping 해주는 Annotation
@@ -27,5 +26,12 @@ public class ScheduleController {
     }
 
 
+    @GetMapping
+    public ResponseEntity<List<ScheduleResponseDto>> findAll() {
+
+        List<ScheduleResponseDto> scheduleResponseDtoList = scheduleService.findAll();
+
+        return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);
+    }
 
 }
