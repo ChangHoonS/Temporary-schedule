@@ -17,7 +17,7 @@ public class ScheduleController {
 
     private final ScheduleService scheduleService; // ScheduleService 를 필드로 설정
 
-    @PostMapping // 서버에 리소스를 등록 할 때 사용하는 Mapping Annotation
+    @PostMapping // 일정 생성
     public ResponseEntity<ScheduleResponseDto> save(@RequestBody CreateScheduleRequestDto requestDto) {
 
         ScheduleResponseDto scheduleResponseDto = scheduleService.save(requestDto.getUsername(), requestDto.getTitle(), requestDto.getTask());
@@ -26,7 +26,7 @@ public class ScheduleController {
     }
 
 
-    @GetMapping
+    @GetMapping // 전체 일정 조회
     public ResponseEntity<List<ScheduleResponseDto>> findAll() {
 
         List<ScheduleResponseDto> scheduleResponseDtoList = scheduleService.findAll();
@@ -35,7 +35,7 @@ public class ScheduleController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // 특정 일정 조회
     public ResponseEntity<ScheduleResponseDto> findById(@PathVariable Long id) {
 
         ScheduleResponseDto scheduleResponseDto = scheduleService.findById(id);
@@ -43,7 +43,16 @@ public class ScheduleController {
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @PatchMapping("/{id}") // 부분 수정
+    public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id, @RequestBody CreateScheduleRequestDto requestDto) {
+
+        ScheduleResponseDto scheduleResponseDto = scheduleService.updateById(id, requestDto.getTitle(), requestDto.getTask());
+
+        return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/{id}") // 일정 삭제
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         scheduleService.delete(id);
 

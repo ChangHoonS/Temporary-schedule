@@ -3,6 +3,7 @@ package com.example.schedule.service;
 import com.example.schedule.dto.ScheduleResponseDto;
 import com.example.schedule.entity.Schedule;
 import com.example.schedule.repository.ScheduleRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class ScheduleService {
 
     public List<ScheduleResponseDto> findAll() {
 
+        // Stream 잘 모르니 알아보기
         return scheduleRepository.findAll()
                 .stream()
                 .map(ScheduleResponseDto::toDto)
@@ -38,6 +40,17 @@ public class ScheduleService {
         return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUsername(), findSchedule.getTitle(), findSchedule.getTask());
     }
 
+    @Transactional // 영속성으로 변화를 감지하면 저장을 해주는 Annotation - 수정 때 유저는 보통 바뀌지 않기에 username은 빼보았다.
+    public ScheduleResponseDto updateById(Long id, String newTitle, String newTask) {
+
+        Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
+
+        findSchedule.updateTitle(newTitle);
+        findSchedule.updateTask(newTask);
+
+        return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUsername(), findSchedule.getTitle(), findSchedule.getTask());
+    }
+
     public void delete(Long id) {
 
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
@@ -45,4 +58,6 @@ public class ScheduleService {
         scheduleRepository.delete(findSchedule);
 
     }
+
+
 }
