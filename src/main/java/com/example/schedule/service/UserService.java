@@ -50,4 +50,12 @@ public class UserService {
 
         return new SignUpResponseDto(findUser.getId(), findUser.getUsername(), findUser.getEmail());
     }
+
+    public void delete(Long id) {
+
+        User findUser = userRepository.findByIdOrElseThrow(id);
+
+        userRepository.delete(findUser);
+
+    }
 }
