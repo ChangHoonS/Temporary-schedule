@@ -31,4 +31,12 @@ public class UserController {
 
         return new ResponseEntity<>(userResponseDto, HttpStatus.OK);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<SignUpResponseDto> updateById(@PathVariable Long id, @RequestBody SignUpRequestDto requestDto) {
+
+        SignUpResponseDto signUpResponseDto = userService.updateById(id, requestDto.getUsername(), requestDto.getEmail());
+
+        return new ResponseEntity<>(signUpResponseDto, HttpStatus.OK);
+    }
 }

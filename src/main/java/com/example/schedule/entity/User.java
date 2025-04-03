@@ -28,4 +28,12 @@ public class User extends BaseEntity {
         this.username = username;
         this.email = email;
     }
+
+    public void updateUsername(String username) {
+        this.username = username;
+    }
+
+    public void updateEmail(String email) {
+        this.email = email;
+    }
 }
