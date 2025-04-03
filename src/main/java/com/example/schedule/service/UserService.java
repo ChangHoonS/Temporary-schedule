@@ -18,9 +18,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public SignUpResponseDto signUp(String username, String email) {
+    public SignUpResponseDto signUp(String username, String email, String password) {
 
-        User user = new User(username, email);
+        User user = new User(username, email, password);
 
         User savedUser = userRepository.save(user);
 
@@ -57,5 +57,17 @@ public class UserService {
 
         userRepository.delete(findUser);
 
+    }
+
+    @Transactional // 비밀번호는 따로 전 비밀번호를 알아야 바꿀수 있는 형태
+    public void updatePassword(Long id, String oldPassword, String newPassword) {
+
+        User findUser = userRepository.findByIdOrElseThrow(id);
+
+        if (!findUser.getPassword().equals(oldPassword)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+        }
+
+        findUser.updatePassword(newPassword);
     }
 }
