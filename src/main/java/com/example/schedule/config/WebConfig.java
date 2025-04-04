@@ -1,0 +1,26 @@
+//package com.example.schedule.config;
+//
+//import com.example.schedule.filter.LoginFilter;
+//import jakarta.servlet.Filter;
+//import jakarta.servlet.FilterRegistration;
+//import org.springframework.boot.web.servlet.FilterRegistrationBean;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+//
+//@Configuration
+//public class WebConfig implements WebMvcConfigurer {
+//
+//    @Bean
+//    public FilterRegistration loginFilter() {
+//        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+//        // Filter 등록
+//        filterRegistrationBean.setFilter(new LoginFilter());
+//        // Filter 순서 설정
+//        filterRegistrationBean.setOrder(1);
+//        // 전체 URL에 Filter 적용
+//        filterRegistrationBean.addUrlPatterns("/*");
+//
+//        return filterRegistrationBean;
+//    }
+//}

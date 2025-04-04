@@ -70,4 +70,14 @@ public class UserService {
 
         findUser.updatePassword(newPassword);
     }
+
+//    public LoginResponseDto login(Long id, String email, String password) {
+//
+//        User findById = userRepository.findByIdOrElseThrow(id);
+//
+//
+//
+//        return new LoginResponseDto();
+//    }
+
 }
