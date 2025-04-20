@@ -1,10 +1,15 @@
 package com.example.schedule.controller;
 
+import com.example.schedule.dto.requestDto.LoginRequestDto;
 import com.example.schedule.dto.requestDto.SignUpRequestDto;
+import com.example.schedule.dto.responseDto.LoginResponseDto;
 import com.example.schedule.dto.responseDto.SignUpResponseDto;
 import com.example.schedule.dto.requestDto.UpdatePasswordRequestDto;
 import com.example.schedule.dto.responseDto.UserResponseDto;
+import com.example.schedule.entity.User;
 import com.example.schedule.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +61,36 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto requestDto, HttpServletRequest request) {
+
+        User loginedUser = userService.loginUser(requestDto);
+
+        HttpSession session = request.getSession();
+
+        session.setAttribute("SESSION_KEY", loginedUser.getId());
+
+        LoginResponseDto loginResponseDto = new LoginResponseDto(loginedUser.getId(), "정상적으로 로그인 되었습니다.");
+
+        return new ResponseEntity<>(loginResponseDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+
+        if(session != null) {
+            session.invalidate();
+        }
+        return ResponseEntity.ok("로그아웃 성공");
+    }
+
+
+
+
+
 
 //    @PostMapping("/login")
 //    public String login (@RequestBody LoginRequestDto request, HttpServletResponse response) {

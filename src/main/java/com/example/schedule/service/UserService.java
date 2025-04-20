@@ -1,5 +1,6 @@
 package com.example.schedule.service;
 
+import com.example.schedule.dto.requestDto.LoginRequestDto;
 import com.example.schedule.dto.responseDto.SignUpResponseDto;
 import com.example.schedule.dto.responseDto.UserResponseDto;
 import com.example.schedule.entity.User;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -69,6 +71,18 @@ public class UserService {
         }
 
         findUser.updatePassword(newPassword);
+    }
+
+    public User loginUser(LoginRequestDto requestDto) {
+
+        User user = userRepository.findByEmail(requestDto.getEmail());
+
+        if (user == null || !user.getPassword().equals(requestDto.getPassword())) {
+
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "유효하지 않은 사용자 이름 혹은 잘못된 비밀번호");
+        }
+
+        return user;
     }
 
 //    public LoginResponseDto login(Long id, String email, String password) {

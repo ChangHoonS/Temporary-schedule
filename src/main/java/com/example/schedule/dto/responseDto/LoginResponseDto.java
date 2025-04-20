@@ -7,8 +7,11 @@ public class LoginResponseDto {
 
     private final Long id;
 
+    private String message;
 
-    public LoginResponseDto(Long id) {
+
+    public LoginResponseDto(Long id, String message) {
         this.id = id;
+        this.message = message;
     }
 }
