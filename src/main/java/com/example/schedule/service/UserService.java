@@ -1,7 +1,7 @@
 package com.example.schedule.service;
 
-import com.example.schedule.dto.SignUpResponseDto;
-import com.example.schedule.dto.UserResponseDto;
+import com.example.schedule.dto.responseDto.SignUpResponseDto;
+import com.example.schedule.dto.responseDto.UserResponseDto;
 import com.example.schedule.entity.User;
 import com.example.schedule.repository.UserRepository;
 import jakarta.transaction.Transactional;

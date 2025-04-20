@@ -3,14 +3,15 @@ package com.example.schedule.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-@Getter
-@Entity
-@Table(name = "user")
+@Getter // Lombok 라이브러리에서 제공하는 Annotation, 필드에 대한 getter 메서드를 자동으로 생성해주기 위해 사용
+@Entity // 선언한 클래스가 JPA가 관리하는 객채로 만들기 위해 사용
+@Table(name = "user") // Table 이름 및 제약 조건을 지정하기 위해 사용
 public class User extends BaseEntity {
+// User 클래스 이면서 BaseEntity 클래스를 상속 받음
 
-
-    @Id
+    @Id // 기본 키 지정 하기 위함이며 반드시 지정해야 함
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // 기본 키 자동 생성 전략 지정하기 위함,
     private Long id;
 
     @Column(nullable = false)

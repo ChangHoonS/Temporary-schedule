@@ -1,6 +1,6 @@
 package com.example.schedule.service;
 
-import com.example.schedule.dto.ScheduleResponseDto;
+import com.example.schedule.dto.responseDto.ScheduleResponseDto;
 import com.example.schedule.entity.Schedule;
 import com.example.schedule.repository.ScheduleRepository;
 import jakarta.transaction.Transactional;

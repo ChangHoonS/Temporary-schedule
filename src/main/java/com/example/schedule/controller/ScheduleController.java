@@ -1,7 +1,7 @@
 package com.example.schedule.controller;
 
-import com.example.schedule.dto.CreateScheduleRequestDto;
-import com.example.schedule.dto.ScheduleResponseDto;
+import com.example.schedule.dto.requestDto.CreateScheduleRequestDto;
+import com.example.schedule.dto.responseDto.ScheduleResponseDto;
 import com.example.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,7 @@ import java.util.List;
 public class ScheduleController {
 
     private final ScheduleService scheduleService; // ScheduleService 를 필드로 설정
+
 
     @PostMapping // 일정 생성
     public ResponseEntity<ScheduleResponseDto> save(@RequestBody CreateScheduleRequestDto requestDto) {

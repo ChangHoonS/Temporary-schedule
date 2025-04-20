@@ -1,9 +1,9 @@
 package com.example.schedule.controller;
 
-import com.example.schedule.dto.SignUpRequestDto;
-import com.example.schedule.dto.SignUpResponseDto;
-import com.example.schedule.dto.UpdatePasswordRequestDto;
-import com.example.schedule.dto.UserResponseDto;
+import com.example.schedule.dto.requestDto.SignUpRequestDto;
+import com.example.schedule.dto.responseDto.SignUpResponseDto;
+import com.example.schedule.dto.requestDto.UpdatePasswordRequestDto;
+import com.example.schedule.dto.responseDto.UserResponseDto;
 import com.example.schedule.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
