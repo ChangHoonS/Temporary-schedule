@@ -3,7 +3,7 @@ package com.example.schedule.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-@Getter // Lombok 라이브러리에서 제공하는 Annotation, 필드에 대한 getter 메서드를 자동으로 생성해주기 위해 사용
+@Getter
 @Entity // 선언한 클래스가 JPA가 관리하는 객채로 만들기 위해 사용
 @Table(name = "user") // Table 이름 및 제약 조건을 지정하기 위해 사용
 public class User extends BaseEntity {
@@ -11,10 +11,14 @@ public class User extends BaseEntity {
 
     @Id // 기본 키 지정 하기 위함이며 반드시 지정해야 함
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // 기본 키 자동 생성 전략 지정하기 위함,
+    /*
+    기본 키 자동 생성 전략 지정하기 위해 사용
+    괄호 안의 형식으로 쓰되 맨뒤 타입은 DB의 종류에 따라 바뀜
+    MySQL은 IDENTITY를 사용
+     */
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // null값이 들어가지 않게 지정할 때 사용
     private String username;
 
     @Column(nullable = false)
@@ -42,7 +46,14 @@ public class User extends BaseEntity {
     public void updateUsername(String username) {
         this.username = username;
     }
-
+    /*
+    다른 클래스에서 사용된 문자열을 String username인 지역변수로 받아오고
+    위 필드와 동일한 this.username에 방금 가져온 지역변수의 문자열을
+    username에 넣어서 객체의 username 필드에 받아온 username값을 넣는 것 (java 복습)
+    고로, 새 username을 받아오기 위한 메서드
+    아래 메서드들도 동일
+    여기서 this.을 쓰는 이유는 이 클래스의 username임을 판별하기 위함
+     */
     public void updateEmail(String email) {
         this.email = email;
     }

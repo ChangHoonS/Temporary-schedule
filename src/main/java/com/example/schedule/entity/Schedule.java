@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @Entity
 @Table(name = "schedule")
+// 앞서 만든 BaseEntity를 상속 받음
 public class Schedule extends BaseEntity {
 
     @Id
@@ -21,8 +22,8 @@ public class Schedule extends BaseEntity {
     @Column(columnDefinition = "Longtext") // 생성 시 데이터베이스 컬럼 정보를 직접 설정 가능 - VARCHAR()를 넘어서는 큰 용량의 문자열 저장 가능
     private String task;
 
-    @ManyToOne // 연관관계 설정
-    @JoinColumn(name = "user_id")
+    @ManyToOne // 연관관계 설정 N:1이며 주인이 아닌쪽에 사용
+    @JoinColumn(name = "user_id") // 왜래키 이름을 지정하기 위해 사용
     private User user;
 
     // Entity 는 무조건 기본 생성자가 필수
