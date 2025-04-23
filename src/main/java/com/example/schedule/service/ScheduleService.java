@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service // Service bean 만들기 Annotation
+@Service // Service bean 만들기 Annotation, 실질적으로 @Component와 같지만 서비스부분인걸 표시하기 위함
 @RequiredArgsConstructor
 public class ScheduleService {
 
@@ -40,11 +40,11 @@ public class ScheduleService {
         return new ScheduleResponseDto(findSchedule.getId(), findSchedule.getUsername(), findSchedule.getTitle(), findSchedule.getTask());
     }
 
-    @Transactional // 영속성으로 변화를 감지하면 저장을 해주는 Annotation - 수정 때 유저는 보통 바뀌지 않기에 username은 빼보았다.
+    @Transactional // 영속성으로 변화를 감지하면 저장을 해주는 Annotation
     public ScheduleResponseDto updateById(Long id, String newTitle, String newTask) {
 
         Schedule findSchedule = scheduleRepository.findByIdOrElseThrow(id);
-
+        // findByIdOrElseThrow(id) - Repository에 메서드를 만들어 줘야함
         findSchedule.updateTitle(newTitle);
         findSchedule.updateTask(newTask);
 

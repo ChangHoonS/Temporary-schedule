@@ -28,4 +28,7 @@ public class ScheduleResponseDto {
     // 이 부분을 잘 모르겠다.
     // 이 부분을 User 엔티티에 만들어서 한번에 사용하는 방식이 가능한가?
 
+    // Build와 같다고 생각
+    // 보통 Entity에 만들어서 호출만 하는 방식으로 사용
+
 }
